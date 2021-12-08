@@ -12,6 +12,8 @@ const speChar = ["?", "<", ">", "~", "!", "@", "#", "$", "%", "^", "&", "*", "("
 // global variable for user's choice .. use let variable since it will change based on user's input
 let userChoice;
 
+// global variable for password criteria... i tried to to make it a local variable but didn't work.. hmm i wonder why. (??)
+let passCrit;
 // Assignment code here
 // 2. write generatePassword function... gonna write the function expression.
 const generatePassword = function () {
@@ -25,7 +27,41 @@ const generatePassword = function () {
     const confirmNum = confirm("Would you like to have some numbers in your password?");
     const confirmSpec = confirm("Would you like to have some special characters in your password?");
 
-    // will come back to if statement for base on the criteria
+    if (confirmUpper && confirmLower && confirmNum && confirmSpec) {
+      passCrit = upperCase.concat(lowerCase, num, speChar);
+    } else if (!confirmUpper && confirmLower && confirmNum && confirmSpec) {
+      passCrit = lowerCase.concat(num, speChar);
+    } else if (confirmUpper && !confirmLower && confirmNum && confirmSpec) {
+      passCrit = upperCase.concat(num, speChar);
+    } else if (confirmUpper && confirmLower && !confirmNum && confirmSpec) {
+      passCrit = upperCase.concat(lowerCase, speChar);
+    } else if (confirmUpper && confirmLower && confirmNum && !confirmSpec) {
+      passCrit = upperCase.concat(lowerCase, num);
+    } else if (!confirmUpper && !confirmLower && confirmNum && confirmSpec) {
+      passCrit = num.concat(speChar);
+    } else if (!confirmUpper && confirmLower && !confirmNum && confirmSpec) {
+      passCrit = lowerCase.concat(speChar);
+    } else if (!confirmUpper && confirmLower && confirmNum && !confirmSpec) {
+      passCrit = lowerCase.concat(num);
+    } else if (confirmUpper && !confirmLower && !confirmNum && confirmSpec) {
+      passCrit = upperCase.concat(speChar);
+    } else if (confirmUpper && !confirmLower && confirmNum && !confirmSpec) {
+      passCrit = upperCase.concat(num);
+    } else if (confirmUpper && confirmLower && !confirmNum && !confirmSpec) {
+      passCrit = upperCase.concat(lowerCase);
+    } else if (!confirmUpper && !confirmLower && !confirmNum && confirmSpec) {
+      passCrit = speChar;
+    } else if (!confirmUpper && !confirmLower && confirmNum && !confirmSpec) {
+      passCrit = num;
+    } else if (!confirmUpper && confirmLower && !confirmNum && !confirmSpec) {
+      passCrit = lowerCase;
+    } else if (confirmUpper && !confirmLower && !confirmNum && !confirmSpec) {
+      passCrit = upperCase;
+    } else if (!confirmUpper && !confirmLower && !confirmNum && !confirmSpec) {
+      alert("You need to choose at least one password criteria. Try again!");
+      // how can I kick it back to the password criteria prompt (??)
+      return;
+    }
   } else if (userChoice === null) {
     // if the user click 'cancel' button then just exit out
     return;
