@@ -1,7 +1,3 @@
-// Pseudocode
-
-// 2.3. based on the selection, result happens and that goes into the for loop
-// 3. for loop function for the randomize the password
 // 4. connect everything where the password shows on the page or perhaps alert.
 
 // 1. establish global variables of all the possible password character types (capital letter, lower case, number and special character)
@@ -14,7 +10,9 @@ let userChoice;
 
 // global variable for password criteria... i tried to to make it a local variable but didn't work.. hmm i wonder why. (??)
 let passCrit;
-// Assignment code here
+// empty array to place the result of random password
+const securePassword = [];
+
 // 2. write generatePassword function... gonna write the function expression.
 const generatePassword = function () {
   // 2.1. prompt - length of password
@@ -74,6 +72,13 @@ const generatePassword = function () {
     alert("Invalid value. Please try again");
     generatePassword();
   }
+
+  // 3. for loop function for the randomize the password
+  for (i = 0; i < parseInt(userChoice); i++) {
+    const randomPass = passCrit[Math.floor(Math.random() * passCrit.length)];
+    securePassword.push(randomPass);
+  }
+  securePassword.join("");
 };
 
 // Get references to the #generate element
@@ -89,3 +94,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+// Question 1. how can I display the random password value to the webpage
