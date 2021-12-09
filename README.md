@@ -3,7 +3,7 @@
 
 <hr />
 
-    - 🔭 I'm currently working on [Daniel Kim Portfolio] (https://danielkim13.github.io/dk_pass_gen_repo/)
+    - 🔭 I'm currently working on [password generator using js] (https://danielkim13.github.io/dk_pass_gen_repo/)
     - I'm currently learning ** HTML, CSS, JavaScript and git **
     - 👨‍💻This project is available at [https://github.com/danielkim13/dk_pass_gen_repo]
     - 📫How to reach me **daniel.d.kim13@gmail.com**
