@@ -1,5 +1,3 @@
-// 4. connect everything where the password shows on the page or perhaps alert.
-
 // 1. establish global variables of all the possible password character types (capital letter, lower case, number and special character)
 const upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 const lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -8,8 +6,7 @@ const speChar = ["?", "<", ">", "~", "!", "@", "#", "$", "%", "^", "&", "*", "("
 // global variable for password criteria... i tried to to make it a local variable but didn't work.. hmm i wonder why. (??)
 let passCrit;
 // empty array to place the result of random password
-const securePassword = [];
-
+let securePassword = [];
 // 2. write generatePassword function... gonna write the function expression.
 const generatePassword = function () {
   // moved this variable from global to local since this var only impacts within this function
@@ -39,17 +36,20 @@ const generatePassword = function () {
     securePassword.push(randomPass);
   }
   // console.log(securePassword.join(""));
+  // alert(securePassword.join(""));
 };
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
+// 4. connect everything where the password shows on the page or perhaps alert.
 function writePassword() {
   generatePassword();
   var passwordText = document.querySelector("#password");
-
+  // passwordText.value = "";
   passwordText.value = securePassword.join("");
+  securePassword = [];
 }
 
 // Add event listener to generate button
