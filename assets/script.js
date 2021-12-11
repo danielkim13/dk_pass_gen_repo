@@ -4,11 +4,12 @@ const lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "
 const num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const speChar = ["?", "<", ">", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", "(", ")", "_", "+", "/", ")", ":", "."];
 // global variable for password criteria... i tried to to make it a local variable but didn't work.. hmm i wonder why. (??)
-let passCrit;
 // empty array to place the result of random password
-let securePassword = [];
+
 // 2. write generatePassword function... gonna write the function expression.
 const generatePassword = function () {
+  let securePassword = [];
+  let passCrit;
   // moved this variable from global to local since this var only impacts within this function
   let userChoice;
   // 2.1. prompt - length of password
@@ -16,12 +17,12 @@ const generatePassword = function () {
   // 2.1.1. user need to write value between 8-128 if not continue to call the function so user can get it correctly
   if (userChoice >= 8 && userChoice <= 128) {
     // 2.2. prompt - criteria for password ==> decided to create it as a function expression.
-    passCriteria();
+    passCrit = passCriteria();
   } else if (userChoice === null) {
     // if the user click 'cancel' button then just exit out
     return;
   } else if (userChoice === "") {
-    // if the user's input is an empty string. possible case is just clicking 'ok' button without writing the value. tell the user to think again.
+    // if the ser's input is an empty string. possible case is just clicking 'ok' button without writing the value. tell the user to think again.
     alert("Invalid Value. Please try again");
     generatePassword();
   } else {
@@ -35,6 +36,7 @@ const generatePassword = function () {
     const randomPass = passCrit[Math.floor(Math.random() * passCrit.length)];
     securePassword.push(randomPass);
   }
+  return securePassword.join("");
   // console.log(securePassword.join(""));
   // alert(securePassword.join(""));
 };
@@ -45,11 +47,9 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 // 4. connect everything where the password shows on the page or perhaps alert.
 function writePassword() {
-  generatePassword();
   var passwordText = document.querySelector("#password");
   // passwordText.value = "";
-  passwordText.value = securePassword.join("");
-  securePassword = [];
+  passwordText.value = generatePassword();
 }
 
 // Add event listener to generate button
@@ -61,6 +61,7 @@ const passCriteria = function () {
   const confirmLower = confirm("Would you like to have some lower case in your password?");
   const confirmNum = confirm("Would you like to have some numbers in your password?");
   const confirmSpec = confirm("Would you like to have some special characters in your password?");
+  let passCrit;
 
   // 16 available cases.. list them below.
   if (confirmUpper && confirmLower && confirmNum && confirmSpec) {
@@ -98,4 +99,5 @@ const passCriteria = function () {
     // how can I kick it back to the password criteria prompt (??)
     passCriteria();
   }
+  return passCrit;
 };
